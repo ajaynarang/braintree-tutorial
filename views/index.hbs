@@ -65,7 +65,15 @@
     </div>
 </form>
 
- <div id="checkout-message"></div>
+ <div id="message-panel" class="panel" style='display:none'>
+        <header class="panel__header">
+            <h1>Transaction Status</h1>
+        </header>
+        <div class="panel__content">
+            <div id="checkout-message"></div>
+        </div>
+ </div>
+
 
 <!-- Load the required client component. -->
 <script src="https://js.braintreegateway.com/web/3.41.0/js/client.min.js"></script>
@@ -183,10 +191,15 @@
                     }).done(function (result) {
 
                         if (result.success) {
+                            $('#cardForm').hide();
+                             $('#message-panel').show();
                             $('#checkout-message').html('<h1>Success</h1>');
+                            
                         } else {
-                            console.log(result);
+                            $('#cardForm').hide();
+                             $('#message-panel').show();
                             $('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
+                           
                         }
                     });
 
